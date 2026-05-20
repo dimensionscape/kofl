@@ -1,0 +1,49 @@
+package kha.graphics4;
+
+import haxe.io.Bytes;
+import haxe.io.BytesData;
+
+class IndexBuffer {
+	public var _buffer: Pointer;
+
+	var myCount: Int;
+
+	public function new(indexCount: Int, usage: Usage, canRead: Bool = false) {
+		myCount = indexCount;
+		_buffer = kinc_create_indexbuffer(indexCount);
+	}
+
+	public function delete() {
+		kinc_delete_indexbuffer(_buffer);
+	}
+
+	public function lock(?start: Int, ?count: Int): kha.arrays.Uint32Array {
+		if (start == null)
+			start = 0;
+		if (count == null)
+			count = this.count();
+		return cast new kha.arrays.ByteArray(kinc_indexbuffer_lock(_buffer, start, count), 0, count * 4);
+	}
+
+	public function unlock(?count: Int): Void {
+		if (count == null)
+			count = this.count();
+		kinc_indexbuffer_unlock(_buffer, count);
+	}
+
+	public function count(): Int {
+		return myCount;
+	}
+
+	@:hlNative("std", "kinc_create_indexbuffer") static function kinc_create_indexbuffer(count: Int): Pointer {
+		return null;
+	}
+
+	@:hlNative("std", "kinc_delete_indexbuffer") static function kinc_delete_indexbuffer(buffer: Pointer): Void {}
+
+	@:hlNative("std", "kinc_indexbuffer_lock") static function kinc_indexbuffer_lock(buffer: Pointer, start: Int, count: Int): hl.Bytes {
+		return null;
+	}
+
+	@:hlNative("std", "kinc_indexbuffer_unlock") static function kinc_indexbuffer_unlock(buffer: Pointer, count: Int): Void {}
+}

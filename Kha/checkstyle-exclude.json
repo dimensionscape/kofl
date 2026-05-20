@@ -1,0 +1,10 @@
+{
+	"all": [
+		"kha.audio2.ogg",
+		"kha.graphics2.truetype",
+		"kha.graphics4.hxsl",
+		"js",
+		"hxcpp",
+		"kha.flash.utils"
+	]
+}

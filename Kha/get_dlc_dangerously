@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+. `dirname "$0"`/Tools/platform.sh
+
+if test -f `dirname "$0"`"/Tools/khamake/khamake.js"; then
+git -C `dirname "$0"` submodule update --remote --merge Tools/khamake
+else
+git -C `dirname "$0"` submodule update --init --remote Tools/khamake
+git -C `dirname "$0"`/Tools/khamake checkout main
+fi
+
+if test -f `dirname "$0"`"/Backends/Kore-hxcpp/khacpp/LICENSE.txt"; then
+git -C `dirname "$0"` submodule update --remote --merge Backends/Kore-hxcpp/khacpp
+else
+git -C `dirname "$0"` submodule update --init --remote Backends/Kore-hxcpp/khacpp
+git -C `dirname "$0"`/Backends/Kore-hxcpp/khacpp checkout main
+fi
+
+if test -f `dirname "$0"`"/Tools/$KORE_PLATFORM/LICENSE.txt"; then
+git -C `dirname "$0"` submodule update --remote --merge "Tools/$KORE_PLATFORM"
+else
+git -C `dirname "$0"` submodule update --init --remote "Tools/$KORE_PLATFORM"
+git -C `dirname "$0"`/Tools/$KORE_PLATFORM checkout main
+fi
+
+if test -f `dirname "$0"`"/Kore/get_dlc_dangerously"; then
+git -C `dirname "$0"` submodule update --remote --merge Kore
+else
+git -C `dirname "$0"` submodule update --init --remote Kore
+git -C `dirname "$0"`/Kore checkout v2
+fi
+
+bash `dirname "$0"`/Kore/get_dlc_dangerously

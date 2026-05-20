@@ -1,0 +1,34 @@
+package openfl.filters;
+
+#if !flash
+import openfl.display.BlendMode;
+import openfl.display.Shader;
+
+class ShaderFilter extends BitmapFilter {
+	public var blendMode:BlendMode = BlendMode.NORMAL;
+	public var bottomExtension:Int;
+	public var leftExtension:Int;
+	public var rightExtension:Int;
+	public var shader:Shader;
+	public var topExtension:Int;
+
+	public function new(shader:Shader) {
+		super();
+		this.shader = shader;
+	}
+
+	override public function clone():BitmapFilter {
+		var filter = new ShaderFilter(shader);
+		filter.bottomExtension = bottomExtension;
+		filter.leftExtension = leftExtension;
+		filter.rightExtension = rightExtension;
+		filter.topExtension = topExtension;
+		filter.blendMode = blendMode;
+		return filter;
+	}
+
+	public function invalidate():Void {}
+}
+#else
+typedef ShaderFilter = flash.filters.ShaderFilter;
+#end

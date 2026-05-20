@@ -1,0 +1,7 @@
+build/
+temp/
+.vs/
+*.log
+*.dmp
+pirate-pig-*.png
+vendor/openfl-samples/**/Export/

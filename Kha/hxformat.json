@@ -1,0 +1,16 @@
+{
+	"whitespace": {
+		"typeHintColonPolicy": "after"
+	},
+	"sameLine": {
+		"ifElse": "next",
+		"tryCatch": "next"
+	},
+	"excludes": [
+		"\\/hxsl\\/.*",
+		"\\/ogg\\/.*",
+		"\\/truetype\\/.*",
+		"\\/khacpp\\/.*",
+		"\\/Node\\/js\\/.*"
+	]
+}
